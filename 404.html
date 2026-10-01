@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <script>self["MonacoEnvironment"] = (function (paths) {
+          return {
+            globalAPI: false,
+            getWorkerUrl : function (moduleId, label) {
+              var result =  paths[label];
+              if (/^((http:)|(https:)|(file:)|(\/\/))/.test(result)) {
+                var currentUrl = String(window.location);
+                var currentOrigin = currentUrl.substr(0, currentUrl.length - window.location.hash.length - window.location.search.length - window.location.pathname.length);
+                if (result.substring(0, currentOrigin.length) !== currentOrigin) {
+                  var js = '/*' + label + '*/importScripts("' + result + '");';
+                  var blob = new Blob([js], { type: 'application/javascript' });
+                  return URL.createObjectURL(blob);
+                }
+              }
+              return result;
+            }
+          };
+        })({
+  "editorWorkerService": "/monacoeditorwork/editor.worker.bundle.js"
+});</script>
+
+    <meta charset="UTF-8" />
+
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Πανελλήνιος Μαθητικός Διαγωνισμός Τεχνητής Νοημοσύνης"
+    />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pdtn.gr/" />
+    <meta property="og:title" content="Πανελλήνιος Διαγωνισμός Τεχνητής Νοημοσύνης" />
+    <meta property="og:description" content="Ο Πανελλήνιος Μαθητικός Διαγωνισμός Τεχνητής Νοημοσύνης (ΠΔΤΝ) είναι ένας ετήσιος διαγωνισμός για μαθητές Γυμνασίου και Λυκείου με στόχο την εξοικείωση με θέματα Τεχνητής Νοημοσύνης." />
+    <meta property="og:image" content="https://pdtn.gr/logo.svg" />
+    <meta property="og:locale" content="el_GR" />
+    <meta property="og:site_name" content="ΠΔΤΝ" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pdtn.gr/" />
+    <meta name="twitter:title" content="Πανελλήνιος Διαγωνισμός Τεχνητής Νοημοσύνης" />
+    <meta name="twitter:description" content="Ο Πανελλήνιος Μαθητικός Διαγωνισμός Τεχνητής Νοημοσύνης (ΠΔΤΝ) είναι ένας ετήσιος διαγωνισμός για μαθητές Γυμνασίου και Λυκείου με στόχο την εξοικείωση με θέματα Τεχνητής Νοημοσύνης." />
+    <meta name="twitter:image" content="https://pdtn.gr/logo.svg" />
+
+    <title>Διαγωνισμός Τεχνητής Νοημοσύνης</title>
+    <link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;600;700;800&display=swap">
+    
+    <script type="module" crossorigin src="/assets/index-CSsh16TP.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/firebase-Bp6MndCM.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-B13-mC_V.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
