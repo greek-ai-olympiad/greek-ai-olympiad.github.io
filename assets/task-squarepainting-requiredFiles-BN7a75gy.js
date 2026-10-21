@@ -1,0 +1,1 @@
+const t="/assets/cat-CM_y66xO.jpg",s=Object.freeze(Object.defineProperty({__proto__:null,default:t},Symbol.toStringTag,{value:"Module"})),e="/assets/rubiks-jBK8Rdt2.jpg",a=Object.freeze(Object.defineProperty({__proto__:null,default:e},Symbol.toStringTag,{value:"Module"})),o="/assets/cat-CM_y66xO.jpg",r="/assets/rubiks-jBK8Rdt2.jpg";export{s as a,a as b,o as c,r};
