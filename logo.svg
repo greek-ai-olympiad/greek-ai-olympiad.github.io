@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-110 -110 220 220" onload="init(evt)">
+
+  <!-- guides to show 0,0 -->
+  <line x1="-110" y1="0" x2="110" y2="0" stroke="#ddd"/>
+  <line x1="0" y1="-110" x2="0" y2="110" stroke="#ddd"/>
+  <circle cx="0" cy="0" r="2.5" fill="crimson"/>
+
+  <!-- the hexagon -->
+  <path id="P" fill="crimson" />
+  <path id="D" fill="rgb(236 178 46)" />
+  <path id="T" fill="blue" />
+  <path id="N" fill="rgb(236 178 46)" />
+
+  <script type="application/ecmascript"><![CDATA[
+    function direction(i, radius = 100) {
+        const startAngle = 0; // 0° for flat-top, 30° for pointy-top
+        const step = Math.PI / 3; // 60°
+        const angle = startAngle + i * step;
+        const x = +(radius * Math.cos(angle));
+        const y = +(radius * Math.sin(angle));
+        return [x, y];
+    }
+    function sum(a, b) {
+        return [a[0] + b[0], a[1] + b[1]];
+    }
+    function P(radius = 100, radius2 = 10) {
+        const path = [];
+        let d = direction(2, 1);
+        let d2 = direction(1, 1);
+        path.push( sum([d[0]/d[1]*radius2*2,2*radius2], [radius2/d2[1], 0] ) );
+        path.push( sum( direction(0, radius), direction(2, 2*radius2 / d[1]) ) );
+        path.push( direction(1, radius) );
+        path.push( sum( direction(2, radius), [radius2/d2[1], 0] ) );
+        return path.map(x => x.map(y => (-y).toFixed(4)).join(',')).join(' ');
+    }
+
+
+    function D(radius = 100, radius2 = 10) {
+        const path = [];
+        let d = direction(1, 1);
+        let d2 = direction(4, 1);
+
+        path.push( sum([0,0], [-radius2/d[1], 0]) );
+        path.push( sum( direction(2, radius), [d2[0]*radius2/d[1], d2[1]*radius2/d[1]] ) );
+        path.push( direction(3, radius) );
+        return path.map(x => x.map(y => (-y).toFixed(4)).join(',')).join(' ');
+    }
+    function T(radius = 100, radius2 = 10) {
+        const path = [];
+        let d = direction(1, 1);
+        let d2 = direction(4, 1);
+
+        path.push( sum([0,0], [-radius2/d[1], 0]) );
+        path.push( sum( direction(2, radius), [d2[0]*radius2/d[1], d2[1]*radius2/d[1]] ) );
+        path.push( direction(3, radius) );
+        return path.map(x => x.map(y => y.toFixed(4)).join(',')).join(' ');
+    }
+    function N(radius = 100, radius2 = 10) {
+        const path = [];
+        let d = direction(2, 1);
+        let d2 = direction(1, 1);
+        path.push( sum([d[0]/d[1]*radius2*2,2*radius2], [radius2/d2[1], 0] ) );
+        path.push( sum( direction(0, radius), direction(2, 2*radius2 / d[1]) ) );
+        path.push( direction(1, radius) );
+        path.push( sum( direction(2, radius), [radius2/d2[1], 0] ) );
+        return path.map(x => x.map(y => y.toFixed(4)).join(',')).join(' ');
+    }
+    function init(evt) {
+        const radius = 100;
+      document.getElementById('P').setAttribute('d', 'M ' + P(radius) + ' Z');
+      document.getElementById('D').setAttribute('d', 'M ' + D(radius) + ' Z');
+      document.getElementById('T').setAttribute('d', 'M ' + T(radius) + ' Z');
+      document.getElementById('N').setAttribute('d', 'M ' + N(radius) + ' Z');
+    }
+  ]]></script>
+</svg>
